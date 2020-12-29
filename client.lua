@@ -19,11 +19,10 @@ local udp2 = assert(socket.udp())
 assert(udp2:setsockname('*', my.port))
 print("sending hello")
 assert(udp2:sendto("hello", peer.ip, peer.port))
-print("sending hello")
-assert(udp2:sendto("hello", peer.ip, peer.port))
 while true do
 	local data = assert(udp2:receive())
 	print("received", data)
+	if data == "hohai" then break end
 	assert(udp2:sendto("hohai", peer.ip, peer.port))
 end
 
