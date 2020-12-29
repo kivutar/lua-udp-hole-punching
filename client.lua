@@ -2,7 +2,7 @@ local socket = require("socket")
 local json = require("json")
 
 local udp = socket.udp()
-udp:setpeername("127.0.0.1", 1234)
+udp:setpeername(arg[1], arg[2])
 
 udp:send("hi")
 local data = assert(udp:receive())
@@ -19,7 +19,6 @@ local udp2 = assert(socket.udp())
 assert(udp2:setsockname('*', my.port))
 print("sending hello")
 assert(udp2:sendto("hello", peer.ip, peer.port))
-os.execute("sleep 1")
 print("sending hello")
 assert(udp2:sendto("hello", peer.ip, peer.port))
 while true do

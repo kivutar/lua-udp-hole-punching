@@ -2,7 +2,7 @@ local socket = require("socket")
 local json = require("json")
 
 local udp = socket.udp()
-udp:setsockname('*', 1234)
+udp:setsockname('*', arg[1] or 1234)
 
 local first = nil
 local second = nil
@@ -19,6 +19,8 @@ while true do
 			udp:sendto(json.stringify(second), second.ip, second.port)
 			udp:sendto(json.stringify(second), first.ip, first.port)
 			udp:sendto(json.stringify(first), second.ip, second.port)
+			first = nil
+			second = nil
 		end
     end
 end
