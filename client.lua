@@ -17,8 +17,14 @@ assert(udp:close())
 
 local udp2 = assert(socket.udp())
 assert(udp2:setsockname('*', my.port))
-print("Punching")
-assert(udp2:sendto("punch", peer.ip, peer.port))
-local data = assert(udp2:receive())
-print("received", data)
+print("sending hello")
+assert(udp2:sendto("hello", peer.ip, peer.port))
+os.execute("sleep 1")
+print("sending hello")
+assert(udp2:sendto("hello", peer.ip, peer.port))
+while true do
+	local data = assert(udp2:receive())
+	print("received", data)
+	assert(udp2:sendto("hohai", peer.ip, peer.port))
+end
 
