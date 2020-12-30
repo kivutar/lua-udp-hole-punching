@@ -3,13 +3,14 @@ local json = require("json")
 
 local udp = socket.udp()
 udp:setsockname('*', arg[1] or 1234)
+print("Listening on", '*', arg[1] or 1234)
 
 local first = nil
 local second = nil
 
 while true do
 	data, ip, port = udp:receivefrom()
-	print(data, ip, port)
+	print("Received", data, ip, port)
 	if data == "hi" then
 		if first == nil then
 			first = {ip=ip, port=port}
