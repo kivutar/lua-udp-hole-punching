@@ -16,7 +16,9 @@ print("I see", peer.ip, peer.port)
 assert(rdv:close())
 
 local p2p = assert(socket.udp())
+assert(p2p:settimeout(0))
 assert(p2p:setsockname('*', my.port))
+
 print("sending hello")
 assert(p2p:sendto("hello", peer.ip, peer.port))
 while true do
