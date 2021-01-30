@@ -13,10 +13,10 @@ while true do
 	print("Received", data, ip, port)
 	if data == "hi" then
 		if first == nil then
-			first = {ip=ip, port=port}
+			first = {ip=ip, port=port, idx=1}
 			udp:sendto(json.stringify(first), first.ip, first.port)
 		else
-			second = {ip=ip, port=port}
+			second = {ip=ip, port=port, idx=2}
 			udp:sendto(json.stringify(second), second.ip, second.port)
 			udp:sendto(json.stringify(second), first.ip, first.port)
 			udp:sendto(json.stringify(first), second.ip, second.port)
