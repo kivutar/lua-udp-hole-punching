@@ -22,8 +22,8 @@ assert(p2p:setsockname('*', my.port))
 print("sending hello")
 assert(p2p:sendto("hello", peer.ip, peer.port))
 while true do
-	local data = assert(p2p:receive())
-	print("received", data)
+	local data = p2p:receive()
+	if data ~= nil then print("received", data) end
 	if data == "hohai" then break end
 	assert(p2p:sendto("hohai", peer.ip, peer.port))
 end
