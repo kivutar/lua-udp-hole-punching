@@ -39,6 +39,7 @@ while true do
 	local data = p2p:receive()
 	if data ~= nil then print("received", data) end
 	if data == "hohai" then break end
+	print("sending hohai")
 	os.execute("sleep 1")
 	assert(p2p:sendto("hohai", peer[2], peer[3]))
 end
