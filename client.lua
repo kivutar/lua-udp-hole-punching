@@ -35,12 +35,13 @@ end
 print("sending hello")
 os.execute("sleep 1")
 assert(p2p:sendto("hello", peer[2], peer[3]))
-while true do
-	local data = p2p:receive()
-	if data ~= nil then print("received", data) end
-	if data == "hohai" then break end
-	print("sending hohai")
-	os.execute("sleep 1")
-	assert(p2p:sendto("hohai", peer[2], peer[3]))
-end
 
+local data = p2p:receive()
+if data ~= nil then print("received", data) end
+
+print("sending hohai")
+os.execute("sleep 1")
+assert(p2p:sendto("hohai", peer[2], peer[3]))
+
+local data = p2p:receive()
+if data ~= nil then print("received", data) end
